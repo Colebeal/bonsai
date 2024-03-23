@@ -43,7 +43,6 @@ const UserSignUp = () => {
 			>
 				<h2>Sign up</h2>
 				<div className={styles['form-field']}>
-					<label htmlFor='email'>Email:</label>
 					<input
 						type='email'
 						name='email'
@@ -53,7 +52,6 @@ const UserSignUp = () => {
 				</div>
 				<div className={styles['form-field__container']}>
 					<div className={styles['form-field']}>
-						<label htmlFor='password'>Password:</label>
 						<input
 							type='password'
 							name='password'
@@ -62,8 +60,6 @@ const UserSignUp = () => {
 						/>
 					</div>
 					<div className={styles['form-field']}>
-						<label htmlFor='password'>Confirm Password:</label>
-
 						<input
 							type='password'
 							name='confirmPassword'
@@ -72,19 +68,18 @@ const UserSignUp = () => {
 						/>
 					</div>
 				</div>
-				<div className='flex gap-3 w-full items-center'>
-					<input
-						disabled={loading}
-						type='submit'
-						value='Sign up'
-					/>
-				</div>
+				<input
+					disabled={loading}
+					className='w-full'
+					type='submit'
+					value='Sign up'
+				/>
 			</form>
 			<span className='flex justify-center gap-2 w-full'>
 				<p>Already have an account?</p>
 				<a
 					href='/user/log-in'
-					className='text-blue-500 hover:text-blue-700 hover:font-semibold'
+					className='text-[#8aaa8d] font-semibold hover:font-bold'
 				>
 					Log in
 				</a>

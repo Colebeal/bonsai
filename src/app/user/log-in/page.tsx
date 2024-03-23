@@ -39,37 +39,43 @@ const UserLogIn = () => {
 			>
 				<h2>Sign in</h2>
 				<div className={styles['form-field']}>
-					<label htmlFor='email'>Email:</label>
 					<input
 						type='email'
 						name='email'
 						id='email'
+						placeholder='Email'
 						required
 					/>
 				</div>
 				<div className={styles['form-field']}>
-					<label htmlFor='password'>Password:</label>
 					<input
 						type='password'
 						name='password'
 						id='password'
+						placeholder='Password'
 						required
 					/>
 				</div>
-				<div className='flex gap-3 w-full items-center'>
+				<div className='mt-1 flex flex-col gap-3 w-full items-center'>
 					<input
 						disabled={loading}
 						type='submit'
 						value='Log in'
+						className='w-full'
 					/>
-					<a href='/user/new-user'>Forgot your password?</a>
+					<a
+						href={'/user/forgot-password'}
+						className='text-sm'
+					>
+						Forgot your password?
+					</a>
 				</div>
 			</form>
-			<span className='flex justify-center gap-2 w-full'>
+			<span className='flex justify-center gap-2 w-full text-sm'>
 				<p>Need an account?</p>
 				<a
 					href='/user/new-user'
-					className='text-blue-500 hover:text-blue-700 hover:font-semibold'
+					className='text-[#8aaa8d] font-semibold hover:font-bold'
 				>
 					Sign up
 				</a>

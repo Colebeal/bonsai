@@ -13,8 +13,15 @@ const Home = () => {
 						dolorem itaque ipsa molestias, ipsam cupiditate nostrum corrupti sit
 						enim?
 					</p>
-					<button>Sign up</button>
-					<a className='ml-4 text-sm'>Already have and account?</a>{' '}
+					<a href='/user/new-user'>
+						<button>Sign up</button>
+					</a>
+					<a
+						href='/user/log-in'
+						className='ml-4 text-sm'
+					>
+						Already have and account?
+					</a>
 				</div>
 			</div>
 			<section className='value-prop'>
@@ -71,8 +78,15 @@ const Home = () => {
 						ducimus recusandae, quasi commodi.
 					</p>
 					<div>
-						<button>Sign up</button>
-						<a className='ml-4 text-sm'>Already have and account?</a>
+						<a href='/user/new-user'>
+							<button>Sign up</button>
+						</a>
+						<a
+							href='/user/log-in'
+							className='ml-4 text-sm'
+						>
+							Already have and account?
+						</a>
 					</div>
 				</div>
 			</section>
