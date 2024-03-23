@@ -1,17 +1,32 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '../../contexts/AuthContext'
 import styles from './userLogIn.module.scss'
 
 const UserLogIn = () => {
-	const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-		event?.preventDefault()
-		const formData = new FormData(event.currentTarget)
+	const [loading, setLoading] = useState(false)
+	const { logIn, currentUser } = useAuth()
+	const router = useRouter()
 
-		// take form data and send to server
-		console.log('Form Data:', Object.fromEntries(formData.entries()))
-		// check to see if the form data is valid
-		// if valid, log in the user
-		// if not valid, display error message
+	const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+		event?.preventDefault()
+		// get form data into a useable object
+		const rawFormData = new FormData(event.currentTarget)
+		const formData = Object.fromEntries(rawFormData.entries())
+		// formatting form data to be a string for signUpHandler
+		const email = `${formData.email}`
+		const password = `${formData.password}`
+		const confirmPassword = `${formData.confirmPassword}`
+
+		try {
+			setLoading(true)
+			await logIn(email, password)
+			await router.push('/user/dashboard')
+		} catch (error) {
+			console.error('error', error)
+		}
+		setLoading(false)
 	}
 
 	return (
@@ -41,11 +56,24 @@ const UserLogIn = () => {
 						required
 					/>
 				</div>
-				<input
-					type='submit'
-					value='Log in'
-				></input>
+				<div className='flex gap-3 w-full items-center'>
+					<input
+						disabled={loading}
+						type='submit'
+						value='Log in'
+					/>
+					<a href='/user/new-user'>Forgot your password?</a>
+				</div>
 			</form>
+			<span className='flex justify-center gap-2 w-full'>
+				<p>Need an account?</p>
+				<a
+					href='/user/new-user'
+					className='text-blue-500 hover:text-blue-700 hover:font-semibold'
+				>
+					Sign up
+				</a>
+			</span>
 		</section>
 	)
 }
