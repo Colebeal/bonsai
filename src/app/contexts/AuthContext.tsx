@@ -9,12 +9,6 @@ import {
 	signInWithEmailAndPassword,
 	signOut,
 } from 'firebase/auth'
-import { sign } from 'crypto'
-
-// interface User {
-// 	email: string
-// 	password: string
-// }
 
 interface AuthContextType {
 	currentUser: any | null
