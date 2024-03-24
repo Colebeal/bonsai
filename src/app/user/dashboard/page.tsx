@@ -16,17 +16,111 @@ const userDashBoard = () => {
 			console.error('error', error)
 		}
 	}
-	// if there is no currentUser, redirect to log-in page
 	!currentUser && router.push('/user/log-in')
-	// useEffect(() => {
-	// 	!currentUser && router.push('/user/log-in')
-	// }, [currentUser, router])
 
 	return (
-		<div>
-			{currentUser && <h2>{`Hello, ${currentUser.email}`}</h2>}
-			<button onClick={() => logOut()}>Log Out</button>
-		</div>
+		<>
+			<div className={styles.hero}>
+				{currentUser && (
+					<h2 className={styles.greet}>{`Welcome, ${currentUser.email}`}</h2>
+				)}
+				{/* <p onClick={() => logOut()}>Log Out</p> */}
+			</div>
+			<section className={styles.content}>
+				<div className={styles['content-header']}>
+					<h1>Dashboard</h1>
+					<a
+						onClick={handleLogOut}
+						className='text-[#8aaa8d] font-semibold hover:font-bold'
+					>
+						Log out
+					</a>
+				</div>
+				<div className={styles['content-body']}>
+					<div className={styles['content-card']}>
+						<h2>Profile</h2>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+							ex ut quae delectus! Fugit facere distinctio deleniti ipsa
+							cupiditate placeat sit adipisci, exercitationem aut molestiae
+							dolor quia illo vero eligendi.
+						</p>
+						<button className='mt-4'>Update Profile</button>
+					</div>
+
+					<div className={styles['content-card']}>
+						<h2>My Trees</h2>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						<ul className={styles['my-trees']}>
+							<li className={styles['my-trees__item']}>
+								<div className={styles['img-container']}>
+									<img
+										src='/pre-bonsai.jpeg'
+										alt=''
+									/>
+								</div>
+								<div>
+									<h2>Tree Name</h2>
+									<p>
+										<strong>Stage:</strong> Development
+									</p>
+									<p>
+										<strong>Goal:</strong> Trunk Thickening
+									</p>
+								</div>
+							</li>
+							<li className={styles['my-trees__item']}>
+								<div className={styles['img-container']}>
+									<img
+										src='/pre-bonsai.jpeg'
+										alt=''
+									/>
+								</div>
+								<div>
+									<h2>Tree Name</h2>
+									<p>
+										<strong>Stage:</strong> Development
+									</p>
+									<p>
+										<strong>Goal:</strong> Trunk Thickening
+									</p>
+								</div>
+							</li>
+							<li className={styles['my-trees__item']}>
+								<div className={styles['img-container']}>
+									<img
+										src='/finished-bonsai.jpeg'
+										alt=''
+									/>
+								</div>
+								<div>
+									<h2>Tree Name</h2>
+									<p>
+										<strong>Stage:</strong> Refinement
+									</p>
+									<p>
+										<strong>Goal:</strong> Ramification
+									</p>
+								</div>
+							</li>
+						</ul>
+						<button className='mt-4'>Update Trees</button>
+					</div>
+					<div className={styles['content-card']}>
+						<h2>Care Guide</h2>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+							ex ut quae delectus! Fugit facere distinctio deleniti ipsa
+							cupiditate placeat sit adipisci, exercitationem aut molestiae
+							dolor quia illo vero eligendi.
+						</p>
+						<a href='/tree-care'>
+							<button className='mt-4'>Launch</button>
+						</a>
+					</div>
+				</div>
+			</section>
+		</>
 	)
 }
 

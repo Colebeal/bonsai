@@ -2,6 +2,7 @@
 
 import React, { useState, ChangeEvent, MouseEvent } from 'react'
 import styles from './treeCare.module.scss'
+import exp from 'constants'
 
 interface TreeInfo {
 	tree_type: string
@@ -17,7 +18,7 @@ interface TreeInfo {
 	pests_diseases: string
 }
 
-export default function TreeCare() {
+const TreeCare = () => {
 	const [treeType, setTreeType] = useState<string | null>(null)
 	const [treeInfo, setTreeInfo] = useState<TreeInfo[] | null>(null)
 
@@ -45,7 +46,6 @@ export default function TreeCare() {
 
 	return (
 		<>
-			{/* ... */}
 			<div className={`${styles.container} ${styles.prompt}`}>
 				<div className={styles['input-container']}>
 					<input
@@ -125,3 +125,5 @@ export default function TreeCare() {
 		</>
 	)
 }
+
+export default TreeCare
