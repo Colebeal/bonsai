@@ -27,7 +27,7 @@ const UserSignUp = () => {
 		try {
 			setLoading(true)
 			await signUp(email, password)
-			await router.push('/')
+			await router.push('/user/dashboard')
 		} catch (error) {
 			console.error('error', error)
 		}

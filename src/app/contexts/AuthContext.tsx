@@ -1,14 +1,15 @@
 'use client'
-import React, { useState, useEffect, useContext, use } from 'react'
-import { auth } from '../firebase'
+import React, { useState, useEffect, useContext } from 'react'
+import { auth, db } from '../firebase'
 import {
-	getAuth,
 	createUserWithEmailAndPassword,
-	Auth,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
 	signOut,
+	updateProfile,
 } from 'firebase/auth'
+
+import { onChildAdded, push, ref, set } from 'firebase/database'
 
 interface AuthContextType {
 	currentUser: any | null
@@ -35,8 +36,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	const [loading, setLoading] = useState(true)
 
 	// Creates User with email and password and returns a promise
-	const signUp = (email: string, password: string) => {
-		return createUserWithEmailAndPassword(auth, email, password)
+	const signUp = async (email: string, password: string) => {
+		await createUserWithEmailAndPassword(auth, email, password).then((user) => {
+			// set user data in database
+
+			const userId = user.user.uid
+			const reference = ref(db, '/users/' + userId)
+			set(reference, {
+				uid: userId,
+				email: email,
+			})
+		})
 	}
 
 	const logIn = (email: string, password: string) => {
@@ -45,6 +55,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
 	const logOut = () => {
 		return signOut(auth)
+	}
+
+	const updateUserProfile = async (userName: string) => {
+		await updateProfile(auth.currentUser, {
+			displayName: userName,
+		})
 	}
 
 	useEffect(() => {
@@ -60,6 +76,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 		signUp,
 		logIn,
 		logOut,
+		updateUserProfile,
 	}
 
 	return (
